@@ -98,6 +98,19 @@ function formatearValor(valor, decimales = 2) {
   return Number.isNaN(numero) ? SIN_DATO : numero.toFixed(decimales);
 }
 
+function convertirNumero(valor) {
+  if (
+    valor === SIN_DATO ||
+    valor === null ||
+    valor === undefined ||
+    valor === ""
+  ) {
+    return NaN;
+  }
+
+  return Number(String(valor).replace(",", "."));
+}
+
 function datosEstanVigentes(datos) {
   if (!datos?.receivedAt) return false;
 
@@ -175,12 +188,16 @@ function TooltipCompacto({ active, payload, label, unidad }) {
 }
 
 function StatusLed({ active, voltaje }) {
+  const voltajeNumerico = convertirNumero(voltaje);
+  const bajoVoltaje =
+    Number.isFinite(voltajeNumerico) && voltajeNumerico < 115;
+
   return (
     <div className="status-led">
       <span
         className={
           active
-            ? Number(voltaje) < 115
+            ? bajoVoltaje
               ? "led led-orange"
               : "led led-green"
             : "led led-red"
@@ -189,7 +206,7 @@ function StatusLed({ active, voltaje }) {
 
       <span>
         {active
-          ? Number(voltaje) < 115
+          ? bajoVoltaje
             ? "Bajo voltaje"
             : "Activo"
           : "Sin señal"}

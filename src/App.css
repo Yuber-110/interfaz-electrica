@@ -309,26 +309,35 @@ button {
 }
 
 .fp-value {
-  display: block;
-  margin-top: 4px;
+  display: flex;
+  align-items: center;
+
+  margin: 0;
+
   font-size: 26px;
   font-weight: 800;
   color: #000000;
+
+  line-height: 1;
 }
 
 .fp-indicador {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
+
+  height: 36px;
   margin-top: 6px;
 }
 
 .fp-led {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   display: inline-block;
+  flex-shrink: 0;
 }
 
 .fp-led-green {

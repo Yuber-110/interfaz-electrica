@@ -346,9 +346,21 @@ function MedidorFactorPotencia({ titulo, valor, color }) {
         </text>
       </svg>
 
-      <strong className="fp-value" style={{ color }}>
-        {fp.toFixed(4)}
-      </strong>
+      <div className="fp-indicador">
+  <span
+    className={
+      fp >= 0.95
+        ? "fp-led fp-led-green"
+        : fp >= 0.85
+        ? "fp-led fp-led-orange"
+        : "fp-led fp-led-red"
+    }
+  ></span>
+
+  <strong className="fp-value">
+    {fp.toFixed(4)}
+  </strong>
+</div>
     </div>
   );
 }

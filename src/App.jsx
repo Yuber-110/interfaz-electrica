@@ -174,11 +174,26 @@ function TooltipCompacto({ active, payload, label, unidad }) {
   );
 }
 
-function StatusLed({ active }) {
+function StatusLed({ active, voltaje }) {
   return (
     <div className="status-led">
-      <span className={active ? "led led-green" : "led led-red"}></span>
-      <span>{active ? "Activo" : "Sin señal"}</span>
+      <span
+        className={
+          active
+            ? Number(voltaje) < 115
+              ? "led led-orange"
+              : "led led-green"
+            : "led led-red"
+        }
+      ></span>
+
+      <span>
+        {active
+          ? Number(voltaje) < 115
+            ? "Bajo voltaje"
+            : "Activo"
+          : "Sin señal"}
+      </span>
     </div>
   );
 }
@@ -204,7 +219,8 @@ function PhaseCard({ phase }) {
     <div className="phase-card">
       <div className="phase-header">
         <h2>{phase.nombre}</h2>
-        <StatusLed active={phase.activa} />
+        <StatusLed active={phase.activa} 
+                    voltaje={phase.voltaje}/>
       </div>
 
       <div className="phase-grid">

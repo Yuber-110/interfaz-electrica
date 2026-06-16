@@ -225,6 +225,11 @@ button {
   border: 2px solid #991b1b;
 }
 
+.led-orange {
+  background: #f59e0b;
+  border: 2px solid #c2410c;
+}
+
 .summary-row {
   display: flex;
   justify-content: space-between;
@@ -446,3 +451,4 @@ button {
     font-size: 10px;
   }
 }
+

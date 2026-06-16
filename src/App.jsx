@@ -235,7 +235,7 @@ function PhaseCard({ phase }) {
       <div className="phase-header">
         <h2>{phase.nombre}</h2>
         <StatusLed active={phase.activa} 
-                    voltaje={phase.voltaje}/>
+                   voltaje={phase.voltaje}/>
       </div>
 
       <div className="phase-grid">

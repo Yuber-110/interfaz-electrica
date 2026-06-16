@@ -188,16 +188,14 @@ function TooltipCompacto({ active, payload, label, unidad }) {
 }
 
 function StatusLed({ active, voltaje }) {
-  const voltajeNumerico = convertirNumero(voltaje);
-  const bajoVoltaje =
-    Number.isFinite(voltajeNumerico) && voltajeNumerico < 115;
+  const voltajeNumerico = Number(String(voltaje).replace(",", "."));
 
   return (
     <div className="status-led">
       <span
         className={
           active
-            ? bajoVoltaje
+            ? voltajeNumerico < 115
               ? "led led-orange"
               : "led led-green"
             : "led led-red"
@@ -206,7 +204,7 @@ function StatusLed({ active, voltaje }) {
 
       <span>
         {active
-          ? bajoVoltaje
+          ? voltajeNumerico < 115
             ? "Bajo voltaje"
             : "Activo"
           : "Sin señal"}
